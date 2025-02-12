@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello, Ella!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 20px;
+        }
+        .play-button {
+            width: 90px;
+            height: 90px;
+            background-color: rgb(200, 50, 120);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.05s ease-out;
+            animation: beat 1.5s infinite ease-in-out;
+        }
+        .play-button:hover {
+            background: rgb(170, 40, 100);
+        }
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 18px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+        }
+        @keyframes beat {
+            0% {
+                transform: scale(1);
+            }
+            10% {
+                transform: scale(1.4);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="dog.jpg" alt="Dog Image">
+    <h1>Hello, Ella!</h1>
+    <div class="play-button" onclick="toggleMusic()">
+        <div class="triangle"></div>
+    </div>
+    <audio id="music" src="https://hi-ella.web.app/song.mp3" loop></audio>
+
+    <script>
+        let music = document.getElementById("music");
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+            } else {
+                music.play();
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
+</html>
