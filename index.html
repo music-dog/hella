@@ -6,21 +6,28 @@
     <title>Hello, Ella!</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             background-color: #121212;
             color: white;
             text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            overflow: hidden; /* Prevents scrolling */
         }
         img {
-            width: 200px;
+            width: 85%;
+            max-width: 600px; /* Prevents it from becoming too large on big screens */
             height: auto;
             object-fit: contain;
+            margin-top: 20vh; /* Fixes it at 20% from the top */
         }
         h1 {
             font-size: 2.5rem;
@@ -39,6 +46,7 @@
             position: relative;
             transition: transform 0.05s ease-out;
             animation: beat 1.5s infinite ease-in-out;
+            margin-top: 20px;
         }
         .play-button:hover {
             background: rgb(170, 40, 100);
