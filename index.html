@@ -4,89 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello, Ella!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
-        body {
+        html, body {
+            height: 100vh;
+            overflow: hidden; /* Prevents unnecessary scroll */
             background-color: #121212;
             color: white;
             text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
             align-items: center;
-            height: 100vh;
-            overflow: hidden; /* Prevents scrolling */
+            padding-top: 15vh; /* Fixes initial position */
         }
         img {
             width: 85%;
-            max-width: 600px; /* Prevents it from becoming too large on big screens */
+            max-width: 600px;
             height: auto;
             object-fit: contain;
-            margin-top: 20vh; /* Fixes it at 20% from the top */
         }
         h1 {
             font-size: 2.5rem;
-            font-family: 'Orbitron', sans-serif;
             margin-top: 20px;
         }
-        .play-button {
-            width: 90px;
-            height: 90px;
-            background-color: rgb(200, 50, 120);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .start-button {
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            border: none;
             cursor: pointer;
-            position: relative;
-            transition: transform 0.05s ease-out;
-            animation: beat 1.5s infinite ease-in-out;
-            margin-top: 20px;
+            border-radius: 8px;
+            background: rgb(52, 152, 219);
+            color: white;
+            font-weight: bold;
+            transition: 0.3s ease-in-out;
+            outline: none;
+            -webkit-tap-highlight-color: transparent; /* Removes highlight on mobile */
         }
-        .play-button:hover {
-            background: rgb(170, 40, 100);
+        .start-button:hover {
+            background: rgb(41, 128, 185);
         }
-        .triangle {
-            width: 0;
-            height: 0;
-            border-left: 18px solid white;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-        }
-        @keyframes beat {
-            0% {
-                transform: scale(1);
-            }
-            10% {
-                transform: scale(1.4);
-            }
-            100% {
-                transform: scale(1);
-            }
+        .start-button:focus {
+            outline: none;
         }
     </style>
 </head>
 <body>
-    <img src="https://raw.githubusercontent.com/music-dog/hella/main/dog.jpg" alt="Dog Image">
-    <h1>Hello, Ella!</h1>
-    <div class="play-button" onclick="toggleMusic()">
-        <div class="triangle"></div>
+    <div class="container">
+        <img src="https://raw.githubusercontent.com/music-dog/hella/main/dog.jpg" alt="Dog Image">
+        <h1>Hello, Ella!</h1>
+        <button class="start-button" onclick="toggleStart()">START</button>
+        <audio id="music" src="https://raw.githubusercontent.com/music-dog/hella/main/song.mp3" loop></audio>
     </div>
-    <audio id="music" src="song.mp3" loop></audio>
 
     <script>
         let music = document.getElementById("music");
         let isPlaying = false;
+        let startButton = document.querySelector(".start-button");
 
-        function toggleMusic() {
+        function toggleStart() {
             if (isPlaying) {
+                startButton.innerText = "START";
                 music.pause();
             } else {
+                startButton.innerText = "STOP";
                 music.play();
             }
             isPlaying = !isPlaying;
