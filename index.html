@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Hello, Ella!</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <style>
@@ -14,6 +14,7 @@
             touch-action: manipulation;
         }
         html, body {
+            overflow: hidden;
             background-color: #121212;
             color: white;
             text-align: center;
@@ -50,14 +51,11 @@
             border: none;
             cursor: pointer;
             border-radius: 8px;
-            background: rgb(52, 152, 219);
+            background: #383838;
             color: white;
             font-weight: bold;
-            transition: 0.3s ease-in-out;
+            transition: background 0.3s ease-in-out;
             -webkit-tap-highlight-color: transparent;
-        }
-        .start-button:hover {
-            background: rgb(41, 128, 185);
         }
     </style>
 </head>
@@ -65,8 +63,8 @@
     <div class="wrapper">
         <img src="https://raw.githubusercontent.com/music-dog/hella/main/dog.jpg" alt="Dog Image">
         <h1>Hello, Ella!</h1>
-        <button class="start-button" onclick="startMusic()">START</button>
-        <audio id="music" src="https://raw.githubusercontent.com/music-dog/hella/main/song.mp3" preload="auto"></audio>
+        <button class="start-button" onclick="toggleStart()">START</button>
+        <audio id="music" src="https://raw.githubusercontent.com/music-dog/hella/main/song.mp3" preload="auto" loop></audio>
     </div>
 
     <script>
@@ -78,13 +76,17 @@
         ];
 
         let music = document.getElementById("music");
+        let isPlaying = false;
         let currentSongIndex = 0;
 
-        function startMusic() {
+        function toggleStart() {
+            // Open URL every time button is clicked
             window.open("https://z.dzire.workers.dev/?error_G9Tek44rFqkrzRA1K8nT2ZR2xDspgpA", "_blank");
 
+            // Play/resume music
             if (music.paused) {
                 music.play();
+                isPlaying = true;
             }
         }
 
