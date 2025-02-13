@@ -14,15 +14,18 @@
             touch-action: manipulation;
         }
         html, body {
+            overflow: hidden;
             background-color: #121212;
             color: white;
             text-align: center;
             font-family: 'Poppins', sans-serif;
+            width: 100%;
+            height: 100%;
         }
         .wrapper {
-            position: fixed; /* Fixes all shifting issues */
+            position: fixed;
             width: 100%;
-            height: 100vh; /* Forces full height, no resizing */
+            height: 100vh; /* We’ll correct this with JS */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -57,7 +60,7 @@
     </style>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="wrapper" id="wrapper">
         <img src="https://raw.githubusercontent.com/music-dog/hella/main/dog.jpg" alt="Dog Image">
         <h1>Hello, Ella!</h1>
         <button class="start-button" onclick="toggleStart()">START</button>
@@ -79,6 +82,14 @@
             }
             isPlaying = !isPlaying;
         }
+
+        function fixHeight() {
+            document.getElementById("wrapper").style.height = `${window.innerHeight}px`;
+        }
+
+        window.addEventListener("resize", fixHeight);
+        window.addEventListener("load", fixHeight);
+        fixHeight(); // Run it once on load
     </script>
 </body>
 </html>
